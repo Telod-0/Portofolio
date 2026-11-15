@@ -1,0 +1,18 @@
+@use "../abstract" as *;
+
+// Pagina e header condividono larghezza massima e margini.
+.page,
+.header {
+  width: 100%;
+  max-width: $max-page-width;
+  margin-inline: auto;
+  padding-inline: $margin-mobile;
+}
+
+// vale 32px fino a 744px e 64px oltre i 1440px.
+@media (min-width: $breakpoint-mobile-wide) {
+  .page,
+  .header {
+    padding-inline: fluid($margin-tablet, $margin-desktop);
+  }
+}

@@ -1,0 +1,284 @@
+@use "../abstract" as *;
+
+// Palette del pannello scuro.
+$contact-overlay: rgba(0, 0, 0, 0.86);
+$contact-border: #383838;
+$contact-field-border: #454545;
+$contact-muted: #a6a6a6;
+$contact-option-background: #111111;
+$contact-success: #4ade80;
+$contact-error: #ff6b6b;
+
+.contact-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: none;
+  place-items: center;
+  overflow-y: auto;
+  padding: 16px;
+  background: $contact-overlay;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:target {
+    display: grid;
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+  }
+}
+
+body:has(.contact-form-overlay:target) {
+  overflow: hidden;
+}
+
+.contact-form {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 28px;
+  border: 1px solid $contact-border;
+  border-radius: 20px;
+  background: var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-background);
+  color: var(--color-background);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__heading {
+    gap: 20px;
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  &__intro {
+    margin: 10px 0 22px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  &__close {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border: 1px solid var(--color-background);
+    border-radius: 50%;
+    color: var(--color-background);
+    font-family: var(--font-mono);
+    font-size: 24px;
+    line-height: 1;
+    transition:
+      background-color $duration-base $ease-standard,
+      color $duration-base $ease-standard,
+      transform $duration-fast $ease-standard;
+
+    &:hover {
+      background: var(--color-background);
+      color: var(--color-ink);
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+
+  &__fields {
+    gap: 16px;
+  }
+
+  &__field {
+    gap: 7px;
+
+    label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid $contact-field-border;
+      background: var(--color-ink);
+      color: var(--color-background);
+      font-family: var(--font-mono);
+      font-size: 14px;
+    }
+
+    input,
+    select {
+      min-height: 46px;
+      padding: 10px 16px;
+      border-radius: 999px;
+    }
+
+    select {
+      -webkit-appearance: none;
+      appearance: none;
+      padding-right: 44px;
+      color-scheme: dark;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 22px center;
+
+      &:invalid {
+        color: $contact-muted;
+      }
+    }
+
+    textarea {
+      min-height: 132px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: $contact-muted;
+      opacity: 1;
+    }
+
+    option {
+      background: $contact-option-background;
+      color: var(--color-background);
+
+      &:checked {
+        background: var(--color-background);
+        color: var(--color-ink);
+      }
+    }
+  }
+
+  &__field input:focus-visible,
+  &__field select:focus-visible,
+  &__field textarea:focus-visible,
+  &__close:focus-visible,
+  &__submit:focus-visible {
+    outline: 2px solid var(--color-background);
+    outline-offset: 3px;
+  }
+
+  &__submit {
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 18px;
+    border: 2px solid var(--color-background);
+    border-radius: 999px;
+    background: var(--color-background);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+      background-color $duration-base $ease-standard,
+      color $duration-base $ease-standard,
+      transform $duration-fast $ease-standard;
+
+    &:hover {
+      background: var(--color-ink);
+      color: var(--color-background);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:disabled {
+      cursor: wait;
+      opacity: 0.65;
+      transform: none;
+    }
+  }
+
+  &__status {
+    min-height: 1.6em;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+
+    // Stati impostati da js/contact-form.js.
+    &::before {
+      display: inline-block;
+      margin-right: 7px;
+      font-weight: 700;
+    }
+
+    &--pending {
+      color: $contact-muted;
+    }
+
+    &--success {
+      color: $contact-success;
+
+      &::before {
+        content: "✓";
+      }
+    }
+
+    &--error {
+      color: $contact-error;
+
+      &::before {
+        content: "×";
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile-max) {
+  .contact-form-overlay {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .contact-form {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    padding: 22px 16px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    &__title {
+      font-size: 30px;
+    }
+
+    &__intro {
+      font-size: 11px;
+    }
+
+    &__fields {
+      gap: 13px;
+    }
+  }
+}

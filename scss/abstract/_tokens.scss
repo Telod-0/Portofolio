@@ -1,0 +1,69 @@
+// Colori
+$color-background: #ffffff;
+$color-primary: #000000;
+$color-ink: #050505;
+$color-secondary: #2d2d33;
+$color-secondary-dark: #2c2c2c;
+$color-banner-background: #e3e3e3;
+
+// Tipografia
+$font-heading: "Oswald", sans-serif;
+$font-mono: "JetBrains Mono", monospace;
+$font-body: "Hanken Grotesk", sans-serif;
+
+$font-size-ui: 0.75rem;
+$font-size-label: 0.6875rem;
+
+$letter-spacing-display: -0.9px;
+$letter-spacing-ui: -0.24px;
+
+// Bordi
+$border-width-strong: 4px;
+$border-box-strong: $border-width-strong solid $color-primary;
+$border-radius-box: 10px;
+
+// Layout
+$max-page-width: 1440px;
+$min-page-width: 320px;
+
+$margin-mobile: 16px;
+$margin-tablet: 32px;
+$margin-desktop: 64px;
+$margin-header-right: 48px;
+
+$gap-mobile: 8px;
+$gap-ipad: 20px;
+$gap-desktop: 16px;
+
+$columns-mobile: 4;
+$columns-ipad: 10;
+$columns-desktop: 12;
+
+// Breakpoint
+$breakpoint-mobile-small: 360px;
+$breakpoint-mobile-wide: 480px;
+$breakpoint-ipad: 744px;
+$breakpoint-banner-compact: 1000px;
+$breakpoint-desktop: 1440px;
+
+$breakpoint-mobile-max: $breakpoint-ipad - 0.02px;
+$breakpoint-ipad-max: $breakpoint-desktop - 0.02px;
+
+// Texture condivisa tra progetti e pagina progetto
+$pattern-grid-width: 91.6px;
+$pattern-grid-height: 35.6px;
+$pattern-grid-opacity: 0.15;
+
+// Movimento
+$duration-fast: 120ms;
+$duration-base: 160ms;
+$duration-slow: 250ms;
+$ease-standard: ease;
+$ease-out: ease-out;
+
+// Livelli di sovrapposizione
+$z-base: 0;
+$z-content: 1;
+$z-floating: 10;
+$z-overlay: 1000;
+$z-header: 1001;

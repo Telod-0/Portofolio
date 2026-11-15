@@ -1,0 +1,14 @@
+@use "sass:math";
+@use "tokens" as *;
+
+// Valore fluido tra due breakpoint
+@function fluid(
+  $min,
+  $max,
+  $from: $breakpoint-ipad,
+  $to: $breakpoint-desktop
+) {
+  $slope: math.div($max - $min, $to - $from);
+
+  @return clamp(#{$min}, #{$min} + (100vw - #{$from}) * #{$slope}, #{$max});
+}

@@ -1,0 +1,29 @@
+@use "../abstract" as *;
+
+:root {
+  --color-background: #{$color-background};
+  --color-primary: #{$color-primary};
+  --color-ink: #{$color-ink};
+  --color-secondary: #{$color-secondary};
+  --color-secondary-dark: #{$color-secondary-dark};
+  --color-banner-background: #{$color-banner-background};
+
+  --font-heading: #{$font-heading};
+  --font-mono: #{$font-mono};
+  --font-body: #{$font-body};
+
+  --radius-box: #{$border-radius-box};
+  --border-strong: #{$border-box-strong};
+
+  --duration-fast: #{$duration-fast};
+  --duration-base: #{$duration-base};
+  --duration-slow: #{$duration-slow};
+  --ease-standard: #{$ease-standard};
+  --ease-out: #{$ease-out};
+
+  --z-content: #{$z-content};
+  --z-floating: #{$z-floating};
+  --z-overlay: #{$z-overlay};
+  --z-header: #{$z-header};
+  --z-base: #{$z-base};
+}

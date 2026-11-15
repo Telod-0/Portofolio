@@ -1,0 +1,1068 @@
+@use "sass:math";
+@use "../abstract" as *;
+
+$columns-desktop-profile: 24;
+
+$profile-max-width: 560px;
+$profile-padding-block-start: 30px;
+$profile-padding-block-end: 48px;
+
+$profile-title-size: 26px;
+$profile-title-line-width: 2px;
+$profile-title-line-gap: 10px;
+$profile-title-gap: 14px;
+
+$profile-title-icon-width: 47px;
+$profile-title-icon-height: 45px;
+$profile-title-icon-gap: 0px;
+$profile-title-icon-offset-x: 0px;
+$profile-title-icon-offset-y: 0px;
+$profile-title-icon-offset-x-desktop: -48px;
+
+$profile-card-inset: 16px;
+$profile-card-padding: 14px;
+$profile-card-radius: 22px;
+$profile-card-radius-desktop: 42px;
+$profile-card-gap: 26px;
+$profile-card-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+$profile-media-aspect: math.div(268, 218);
+$profile-media-radius: 14px;
+$profile-media-radius-desktop: 24px;
+$profile-media-background: #171717;
+$profile-caption-name-size: 15px;
+$profile-caption-name-size-desktop: 30px;
+$profile-caption-date-size: 11px;
+$profile-caption-icon-size: 12px;
+$profile-caption-padding-top: 10px;
+$profile-caption-height-mobile: 64px;
+$profile-caption-height-desktop: 84px;
+
+$profile-bio-size: 12px;
+$profile-bio-line-height: 1.65;
+$profile-bio-gap: 30px;
+
+$profile-padding-block-start-ipad: 40px;
+$profile-padding-block-end-ipad: 56px;
+$profile-padding-block-start-desktop: 80px;
+$profile-gap-desktop: 48px;
+$profile-padding-block-end-desktop: 80px;
+$profile-title-size-ipad: 34px;
+$profile-title-size-desktop: 40px;
+$profile-skills-gap-ipad: 32px;
+
+$profile-skills-radius: 22px;
+$profile-skills-radius-desktop: 20px;
+$profile-skills-padding-block: 18px;
+$profile-skills-padding-inline: 16px;
+$profile-skills-shadow-offset: 2px;
+$profile-skills-shadow:
+  $profile-skills-shadow-offset $profile-skills-shadow-offset 0 0
+    var(--color-primary),
+  0 3px 10px rgba(0, 0, 0, 0.12);
+$profile-skills-background: #fafafa;
+$profile-skills-border-width: 2px;
+$profile-skills-title-size: 16px;
+$profile-skills-title-gap: 14px;
+$profile-skills-title-rule: 1px solid rgba(0, 0, 0, 0.18);
+$profile-skill-group-gap: 18px;
+$profile-skill-label-size: 9px;
+$profile-skill-padding-block: 4px;
+$profile-skill-padding-inline: 9px;
+$profile-skill-shadow: 1px 1px 0 rgba(0, 0, 0, 0.14);
+$profile-skill-radius-desktop: 999px;
+$profile-decoration-left-height-desktop: 112px;
+$profile-decoration-left-top-desktop: 40px;
+$profile-decoration-left-x-desktop: 1px;
+$profile-decoration-right-size-desktop: 100px;
+$profile-decoration-right-bottom-desktop: -150px;
+$profile-decoration-right-offset-desktop: -84px;
+
+$profile-subheading-size: 20px;
+$profile-subheading-gap: 18px;
+$profile-subheading-dot-size: 9px;
+$profile-block-gap: 26px;
+$profile-experience-gap-top: 24px;
+
+$experience-gap: 14px;
+$experience-padding: 18px;
+$experience-radius: 16px;
+$experience-role-size: 14px;
+$experience-role-gap: 6px;
+$experience-meta-size: 10.5px;
+$experience-meta-color: var(--color-secondary);
+$experience-desc-size: 10.5px;
+$experience-desc-gap: 14px;
+$experience-desc-color: var(--color-secondary);
+$experience-desc-line-height: 1.7;
+
+$curriculum-border-width: 2px;
+$curriculum-radius: 16px;
+$curriculum-shadow: 2px;
+$curriculum-padding: 18px;
+
+$formation-radius: 16px;
+$formation-padding: 18px;
+$formation-row-radius: 10px;
+$formation-row-padding: 12px 14px;
+$formation-gap: 10px;
+$formation-title-size: 13px;
+$formation-meta-size: 10px;
+$formation-period-color: #8f8f8f;
+$formation-divider-color: rgba(255, 255, 255, 0.24);
+
+$tool-gap: 12px;
+$tool-padding-inline: 16px;
+$tool-list-min-width: 320px;
+$tool-list-max-width: 400px;
+$tool-radius: 9px;
+$tool-border-color: #b0b0b0;
+$tool-dark-background: #1b1b1b;
+$tool-label-size: fluid(12px, 17px);
+$tool-figma-height: fluid(21px, 30px);
+
+$profile-subheading-size-ipad: fluid(24px, 34px);
+$profile-subheading-gap-ipad: fluid(24px, 32px);
+$profile-subheading-dot-size-ipad: fluid(10px, 12px);
+$profile-curriculum-gap-ipad: fluid(32px, 48px);
+$profile-side-gap-ipad: fluid(32px, 48px);
+
+$curriculum-border-width-ipad: 2px;
+$curriculum-shadow-ipad: 2px;
+
+$experience-gap-ipad: fluid(24px, 34px);
+$experience-padding-ipad: fluid(18px, 24px);
+$experience-radius-ipad: 16px;
+$experience-role-size-ipad: fluid(13px, 17px);
+$experience-role-gap-ipad: 8px;
+$experience-meta-size-ipad: fluid(9px, 12px);
+$experience-desc-size-ipad: fluid(10px, 12px);
+$experience-desc-gap-ipad: fluid(12px, 16px);
+$experience-desc-line-height-ipad: 1.75;
+
+$formation-padding-ipad: fluid(18px, 24px);
+$formation-radius-ipad: 18px;
+$formation-row-radius-ipad: 12px;
+$formation-row-padding-ipad: fluid(18px, 24px) fluid(12px, 16px);
+$formation-gap-ipad: fluid(14px, 20px);
+$formation-title-size-ipad: fluid(12px, 15px);
+$formation-meta-size-ipad: fluid(9px, 11px);
+
+$tools-padding-ipad: fluid(14px, 20px);
+$tool-gap-ipad: fluid(8px, 12px);
+$tool-radius-ipad: fluid(8px, 14px);
+$tool-figma-height-ipad: fluid(22px, 46px);
+$tool-label-size-ipad: fluid(18px, 38px);
+
+$profile-subheading-size-desktop: 48px;
+$profile-subheading-gap-desktop: 22px;
+$profile-subheading-dot-size-desktop: 15px;
+$profile-curriculum-gap-desktop: 64px;
+$profile-side-gap-desktop: 48px;
+
+$curriculum-border-width-desktop: 3px;
+$curriculum-radius-desktop: 22px;
+$curriculum-shadow-desktop: 3px;
+$curriculum-padding-desktop: 24px;
+
+$experience-border-color: #8f8f8f;
+$experience-gap-desktop: 24px;
+$experience-padding-desktop: 24px;
+$experience-radius-desktop: 16px;
+$experience-role-size-desktop: 28px;
+$experience-role-gap-desktop: 10px;
+$experience-meta-size-desktop: 12px;
+$experience-desc-size-desktop: 11px;
+$experience-desc-gap-desktop: 16px;
+$experience-desc-line-height-desktop: 1.8;
+$experience-decoration-width-desktop: 65px;
+$experience-decoration-height-desktop: 67px;
+$experience-decoration-top-desktop: -60px;
+$experience-decoration-left-desktop: -64px;
+
+$formation-radius-desktop: 24px;
+$formation-padding-desktop: 24px;
+$formation-row-radius-desktop: 18px;
+$formation-row-padding-desktop: 12px 20px;
+$formation-gap-desktop: 16px;
+$formation-title-size-desktop: 16px;
+$formation-meta-size-desktop: 12px;
+
+$tool-grid-width-desktop: 520px;
+$tool-gap-desktop: 56px;
+$tool-cell-height-desktop: 72px;
+$tool-dark-size-desktop: 56px;
+$tool-dark-radius-desktop: 14px;
+$tool-figma-height-desktop: 62px;
+$tool-label-size-desktop: 26px;
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: $profile-max-width;
+  margin-inline: auto;
+  padding: $profile-padding-block-start $margin-mobile
+    $profile-padding-block-end;
+
+  &__decoration {
+    display: none;
+  }
+
+  &__intro {
+    display: contents;
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    &__title {
+      order: 1;
+    }
+
+    &__card {
+      order: 2;
+    }
+
+    &__bio {
+      order: 3;
+    }
+
+    &__skills {
+      order: 4;
+    }
+
+    &__experience {
+      order: 5;
+    }
+
+    &__side {
+      order: 6;
+    }
+
+    &__caption {
+      min-height: $profile-caption-height-mobile;
+    }
+  }
+
+  &__title {
+    margin: 0 0 $profile-title-gap;
+    padding-bottom: $profile-title-line-gap;
+    border-bottom: $profile-title-line-width solid var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: $profile-title-size;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: $letter-spacing-display;
+  }
+
+  &__title-icon {
+    display: none;
+    flex: 0 0 auto;
+    width: $profile-title-icon-width;
+    height: $profile-title-icon-height;
+    margin-bottom: $profile-title-icon-gap;
+    transform: translate(
+      $profile-title-icon-offset-x,
+      $profile-title-icon-offset-y
+    );
+  }
+
+  &__card {
+    margin: 0 $profile-card-inset $profile-card-gap;
+    padding: $profile-card-padding;
+    border-radius: $profile-card-radius;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: $profile-card-shadow;
+  }
+
+  &__media {
+    aspect-ratio: $profile-media-aspect;
+    border-radius: $profile-media-radius;
+    background-image: radial-gradient(
+      120% 100% at 50% 0%,
+      #242428 0%,
+      $profile-media-background 70%
+    );
+    background-color: $profile-media-background;
+  }
+
+  &__caption {
+    gap: 12px;
+    padding: $profile-caption-padding-top 2px 0;
+  }
+
+  &__caption-name {
+    font-family: var(--font-body);
+    font-size: $profile-caption-name-size;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  &__caption-date {
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: $profile-caption-date-size;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: $letter-spacing-ui;
+  }
+
+  &__caption-icon {
+    width: $profile-caption-icon-size;
+    height: $profile-caption-icon-size;
+  }
+
+  &__bio {
+    margin: 0 0 $profile-bio-gap;
+    padding-inline: 4px;
+    font-family: var(--font-mono);
+    font-size: $profile-bio-size;
+    font-weight: 500;
+    line-height: $profile-bio-line-height;
+    color: var(--color-secondary);
+  }
+
+  &__skills {
+    padding: $profile-skills-padding-block $profile-skills-padding-inline;
+    border: $profile-skills-border-width solid var(--color-primary);
+    border-radius: $profile-skills-radius;
+    background-color: $profile-skills-background;
+    box-shadow: $profile-skills-shadow;
+  }
+
+  &__skills-title {
+    margin: 0 0 $profile-skills-title-gap;
+    padding-bottom: 12px;
+    border-bottom: $profile-skills-title-rule;
+    font-family: var(--font-heading);
+    font-size: $profile-skills-title-size;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: $letter-spacing-display;
+  }
+
+  &__skill-group + &__skill-group {
+    margin-top: $profile-skill-group-gap;
+  }
+
+  &__skill-label {
+    font-family: var(--font-mono);
+    font-size: $profile-skill-label-size;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: $letter-spacing-ui;
+    color: var(--color-primary);
+  }
+
+  &__skill {
+    padding: $profile-skill-padding-block $profile-skill-padding-inline;
+    border: 1px solid var(--color-primary);
+    border-radius: 3px;
+    background-color: var(--color-background);
+    box-shadow: $profile-skill-shadow;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: $letter-spacing-ui;
+  }
+
+  @media (min-width: $breakpoint-ipad) {
+    display: grid;
+    grid-template-columns: repeat($columns-ipad, minmax(0, 1fr));
+    column-gap: $gap-ipad;
+    align-items: start;
+    max-width: $max-page-width;
+    padding-top: $profile-padding-block-start-ipad;
+    padding-bottom: $profile-padding-block-end-ipad;
+    padding-inline: fluid(32px, 64px);
+
+    &__card {
+      grid-column: 1 / span 4;
+      grid-row: 1;
+      align-self: center;
+      margin: 0;
+      padding: 16px;
+      border-radius: 24px;
+    }
+
+    &__media {
+      aspect-ratio: 1.35;
+    }
+
+    &__intro {
+      display: block;
+      grid-column: 5 / -1;
+      grid-row: 1;
+      align-self: center;
+    }
+
+    &__title {
+      margin: 0 0 20px;
+      font-size: $profile-title-size-ipad;
+    }
+
+    &__bio {
+      margin: 0;
+      padding-inline: 0;
+      font-size: 13px;
+    }
+
+    &__skills {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 32px;
+      row-gap: 34px;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-top: $profile-skills-gap-ipad;
+      padding: 22px;
+      border-radius: 24px;
+    }
+
+    &__skills-title {
+      grid-column: 1 / -1;
+      margin-bottom: 0;
+      font-size: 17px;
+    }
+
+    &__skill-group + &__skill-group {
+      margin-top: 0;
+    }
+
+    &__skill-label {
+      font-size: 9.5px;
+    }
+
+    &__skill {
+      padding: 4px 10px;
+    }
+
+    &__caption-name {
+      font-size: 17px;
+    }
+
+    &__caption {
+      padding: 12px 12px 0;
+    }
+
+    &__caption-date {
+      font-size: 12px;
+    }
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    position: relative;
+    grid-template-columns: repeat($columns-desktop-profile, minmax(0, 1fr));
+    column-gap: $profile-gap-desktop;
+    padding-top: $profile-padding-block-start-desktop;
+    padding-bottom: $profile-padding-block-end-desktop;
+    padding-inline: $margin-desktop;
+
+    &__decoration {
+      display: block;
+      position: absolute;
+      height: auto;
+      pointer-events: none;
+    }
+
+    &__decoration--left {
+      top: $profile-decoration-left-top-desktop;
+      left: $profile-decoration-left-x-desktop;
+      height: $profile-decoration-left-height-desktop;
+      z-index: var(--z-base);
+      object-fit: cover;
+      object-position: top left;
+    }
+
+    &__title-icon {
+      display: block;
+      position: absolute;
+      top: -$profile-title-icon-height;
+      left: 0;
+      margin: 0;
+      transform: translateX($profile-title-icon-offset-x-desktop);
+    }
+
+    &__card {
+      position: relative;
+      z-index: var(--z-content);
+      grid-column: 1 / span 9;
+      grid-row: 1 / span 2;
+      align-self: center;
+      margin-block: 10px;
+      padding: 18px;
+      border-radius: $profile-card-radius-desktop;
+    }
+
+    &__media {
+      aspect-ratio: 1.1;
+      border-radius: $profile-media-radius-desktop;
+    }
+
+    &__intro {
+      position: relative;
+      grid-column: 10 / -1;
+      grid-row: 1;
+      align-self: start;
+    }
+
+    &__title {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 6px;
+      padding: 0;
+      border-bottom: 0;
+      font-size: $profile-title-size-desktop;
+
+      &::after {
+        content: "";
+        flex: 1 1 auto;
+        height: $profile-title-line-width;
+        background-color: var(--color-primary);
+      }
+    }
+
+    &__bio {
+      font-size: 15px;
+      margin: 6px;
+    }
+
+    &__skills {
+      display: block;
+      position: relative;
+      grid-column: 10 / -1;
+      grid-row: 2;
+      margin-top: -16px;
+      padding: 26px;
+      border-radius: $profile-skills-radius-desktop;
+    }
+
+    &__decoration--right {
+      right: $profile-decoration-right-offset-desktop;
+      bottom: $profile-decoration-right-bottom-desktop;
+      width: $profile-decoration-right-size-desktop;
+    }
+
+    &__skills-title {
+      grid-column: auto;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      font-size: 20px;
+    }
+
+    &__skill-group + &__skill-group {
+      margin-top: $profile-skill-group-gap;
+    }
+
+    &__skill-label {
+      font-size: 10px;
+    }
+
+    &__skill {
+      padding: 5px 11px;
+      border-radius: $profile-skill-radius-desktop;
+    }
+
+    &__caption-name {
+      font-size: $profile-caption-name-size-desktop;
+    }
+
+    &__caption {
+      min-height: $profile-caption-height-desktop;
+      padding: 4px 12px 0;
+    }
+
+    &__caption-date {
+      font-size: 13px;
+    }
+  }
+
+  &__experience,
+  &__side {
+    grid-column: 1 / -1;
+  }
+
+  &__experience {
+    margin-top: $profile-experience-gap-top;
+  }
+
+  &__formations,
+  &__tools {
+    margin-top: $profile-block-gap;
+  }
+
+  &__subheading {
+    gap: 6px;
+    margin: 0 0 $profile-subheading-gap;
+    font-family: var(--font-heading);
+    font-size: $profile-subheading-size;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: $letter-spacing-display;
+
+    &::before {
+      content: "✦";
+      flex: 0 0 auto;
+      font-size: $profile-subheading-dot-size;
+      line-height: 1;
+    }
+
+    &--light {
+      color: var(--color-background);
+    }
+  }
+
+  &__experience-decoration {
+    display: none;
+  }
+
+  &__formations {
+    padding: $formation-padding;
+    border-radius: $formation-radius;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: $curriculum-shadow $curriculum-shadow 0 0 var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__tools {
+    padding: $curriculum-padding;
+    border: $curriculum-border-width solid var(--color-primary);
+    border-radius: $curriculum-radius;
+    background-color: var(--color-background);
+    box-shadow: $curriculum-shadow $curriculum-shadow 0 0 var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.experience {
+  gap: $experience-gap;
+
+  &__item {
+    padding: $experience-padding;
+    border: 1px solid $experience-border-color;
+    border-radius: $experience-radius;
+    background-color: var(--color-background);
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    &__item {
+      border: $curriculum-border-width solid var(--color-primary);
+      box-shadow: $curriculum-shadow $curriculum-shadow 0 0 var(--color-primary);
+    }
+  }
+
+  &__role {
+    margin: 0 0 $experience-role-gap;
+    font-family: var(--font-mono);
+    font-size: $experience-role-size;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__meta {
+    font-family: var(--font-mono);
+    font-size: $experience-meta-size;
+    line-height: 1.4;
+    color: $experience-meta-color;
+  }
+
+  &__desc {
+    margin: $experience-desc-gap 0 0;
+    font-family: var(--font-mono);
+    font-size: $experience-desc-size;
+    line-height: $experience-desc-line-height;
+    color: $experience-desc-color;
+  }
+}
+
+.formation {
+  gap: $formation-gap;
+
+  &__item {
+    padding: $formation-row-padding;
+    border-radius: $formation-row-radius;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  &__head {
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  &__title {
+    font-family: var(--font-body);
+    font-size: $formation-title-size;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__period {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-size: $formation-meta-size;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-ui;
+    color: $formation-period-color;
+  }
+
+  &__school {
+    margin: 6px 0 0;
+    font-family: var(--font-mono);
+    font-size: $experience-meta-size;
+    line-height: 1.4;
+    letter-spacing: $letter-spacing-ui;
+    color: $experience-meta-color;
+  }
+}
+
+.tool-list {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: $tool-gap;
+  max-width: fluid($tool-list-min-width, $tool-list-max-width);
+  margin: 0 auto;
+  padding: 0 $tool-padding-inline;
+}
+
+.tool {
+  place-items: center;
+  aspect-ratio: 1;
+  border: 1px solid $tool-border-color;
+  border-radius: $tool-radius;
+  background-color: var(--color-background);
+
+  &--dark {
+    border-color: $tool-dark-background;
+    background-color: $tool-dark-background;
+    color: var(--color-background);
+  }
+
+  &__image {
+    width: auto;
+    height: $tool-figma-height;
+  }
+
+  &__label {
+    font-family: var(--font-body);
+    font-size: $tool-label-size;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+}
+
+@media (min-width: $breakpoint-ipad) and (max-width: $breakpoint-ipad-max) {
+  .profile__experience {
+    grid-column: 1 / span 6;
+    grid-row: 3;
+    align-self: stretch;
+    margin-top: $profile-curriculum-gap-ipad;
+  }
+
+  .profile__side {
+    display: flex;
+    flex-direction: column;
+    gap: $profile-side-gap-ipad;
+    grid-column: 7 / -1;
+    grid-row: 3;
+    align-self: stretch;
+    margin-top: $profile-curriculum-gap-ipad;
+
+    .profile__formations,
+    .profile__tools {
+      margin-top: 0;
+    }
+
+    .profile__tools {
+      flex: 1;
+    }
+  }
+
+  .profile__subheading {
+    gap: 8px;
+    margin-bottom: $profile-subheading-gap-ipad;
+    font-size: $profile-subheading-size-ipad;
+
+    &::before {
+      font-size: $profile-subheading-dot-size-ipad;
+    }
+  }
+
+  .experience {
+    gap: $experience-gap-ipad;
+
+    &__item {
+      padding: $experience-padding-ipad;
+      border: $curriculum-border-width-ipad solid var(--color-primary);
+      border-radius: $experience-radius-ipad;
+      box-shadow: $curriculum-shadow-ipad $curriculum-shadow-ipad 0 0
+        var(--color-primary);
+    }
+
+    &__role {
+      margin-bottom: $experience-role-gap-ipad;
+      font-size: $experience-role-size-ipad;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    &__meta {
+      font-size: $experience-meta-size-ipad;
+    }
+
+    &__desc {
+      margin-top: $experience-desc-gap-ipad;
+      font-size: $experience-desc-size-ipad;
+      line-height: $experience-desc-line-height-ipad;
+    }
+  }
+
+  .profile__formations {
+    padding: $formation-padding-ipad;
+    border-radius: $formation-radius-ipad;
+    box-shadow: $curriculum-shadow-ipad $curriculum-shadow-ipad 0 0
+      var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $formation-divider-color;
+    }
+  }
+
+  .formation {
+    gap: $formation-gap-ipad;
+
+    &__item {
+      padding: $formation-row-padding-ipad;
+      border-radius: $formation-row-radius-ipad;
+    }
+
+    &__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    &__period {
+      order: -1;
+      font-size: $formation-meta-size-ipad;
+    }
+
+    &__title {
+      font-family: var(--font-mono);
+      font-size: $formation-title-size-ipad;
+    }
+
+    &__school {
+      margin-top: 4px;
+      font-size: $formation-meta-size-ipad;
+    }
+  }
+
+  .profile__tools {
+    display: flex;
+    flex-direction: column;
+    padding: $tools-padding-ipad;
+    border-radius: $formation-radius-ipad;
+    box-shadow: $curriculum-shadow-ipad $curriculum-shadow-ipad 0 0
+      var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 22px;
+    }
+  }
+
+  .tool-list {
+    flex: 1;
+    align-content: center;
+    gap: $tool-gap-ipad;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .tool {
+    border-color: var(--color-primary);
+    border-radius: $tool-radius-ipad;
+
+    &__image {
+      height: $tool-figma-height-ipad;
+    }
+
+    &__label {
+      font-size: $tool-label-size-ipad;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .profile__experience {
+    position: relative;
+    grid-column: 1 / span 10;
+    grid-row: 3;
+    align-self: stretch;
+    margin-top: $profile-curriculum-gap-desktop;
+    padding: $curriculum-padding-desktop;
+    border: $curriculum-border-width-desktop solid var(--color-primary);
+    border-radius: $curriculum-radius-desktop;
+    background-color: var(--color-background);
+    box-shadow: $curriculum-shadow-desktop $curriculum-shadow-desktop 0 0
+      var(--color-primary);
+  }
+
+  .profile__experience-decoration {
+    display: block;
+    position: absolute;
+    top: $experience-decoration-top-desktop;
+    left: $experience-decoration-left-desktop;
+    width: $experience-decoration-width-desktop;
+    height: $experience-decoration-height-desktop;
+    pointer-events: none;
+  }
+
+  .profile__side {
+    display: flex;
+    flex-direction: column;
+    gap: $profile-side-gap-desktop;
+    grid-column: 11 / -1;
+    grid-row: 3;
+    align-self: stretch;
+    margin-top: $profile-curriculum-gap-desktop;
+
+    .profile__formations,
+    .profile__tools {
+      margin-top: 0;
+    }
+
+    .profile__tools {
+      flex: 1;
+    }
+  }
+
+  .profile__subheading {
+    gap: 10px;
+    margin-bottom: $profile-subheading-gap-desktop;
+    font-size: $profile-subheading-size-desktop;
+
+    &::before {
+      font-size: $profile-subheading-dot-size-desktop;
+    }
+  }
+
+  .experience {
+    gap: $experience-gap-desktop;
+
+    &__item {
+      padding: $experience-padding-desktop;
+      border-width: 2px;
+      border-radius: $experience-radius-desktop;
+    }
+
+    &__role {
+      margin-bottom: $experience-role-gap-desktop;
+      font-size: $experience-role-size-desktop;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    &__meta {
+      font-size: $experience-meta-size-desktop;
+    }
+
+    &__desc {
+      margin-top: $experience-desc-gap-desktop;
+      font-size: $experience-desc-size-desktop;
+      line-height: $experience-desc-line-height-desktop;
+    }
+  }
+
+  .profile__formations {
+    padding: $formation-padding-desktop;
+    border-radius: $formation-radius-desktop;
+    box-shadow: $curriculum-shadow-desktop $curriculum-shadow-desktop 0 0
+      var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 20px;
+    }
+  }
+
+  .formation {
+    gap: $formation-gap-desktop;
+
+    &__item {
+      padding: $formation-row-padding-desktop;
+      border-radius: $formation-row-radius-desktop;
+    }
+
+    &__title {
+      font-family: var(--font-mono);
+      font-size: $formation-title-size-desktop;
+    }
+
+    &__period,
+    &__school {
+      font-size: $formation-meta-size-desktop;
+    }
+
+    &__school {
+      margin-top: 4px;
+    }
+  }
+
+  .profile__tools {
+    padding: $curriculum-padding-desktop;
+    border-width: $curriculum-border-width-desktop;
+    border-radius: $curriculum-radius-desktop;
+    box-shadow: $curriculum-shadow-desktop $curriculum-shadow-desktop 0 0
+      var(--color-primary);
+
+    .profile__subheading {
+      margin-bottom: 86px;
+    }
+  }
+
+  .tool-list {
+    gap: $tool-gap-desktop 0;
+    max-width: $tool-grid-width-desktop;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .tool {
+    height: $tool-cell-height-desktop;
+    aspect-ratio: auto;
+    border: 0;
+    background: none;
+
+    &--dark {
+      background: none;
+    }
+
+    &--dark &__label {
+      display: grid;
+      place-items: center;
+      width: $tool-dark-size-desktop;
+      height: $tool-dark-size-desktop;
+      border-radius: $tool-dark-radius-desktop;
+      background-color: $tool-dark-background;
+    }
+
+    &__image {
+      height: $tool-figma-height-desktop;
+    }
+
+    &__label {
+      font-size: $tool-label-size-desktop;
+    }
+  }
+}

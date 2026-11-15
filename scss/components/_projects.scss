@@ -1,0 +1,545 @@
+@use "../abstract" as *;
+
+$projects-padding-block: 32px;
+$projects-padding-inline: $margin-mobile;
+$projects-background: var(--color-primary);
+$projects-title-size: 30px;
+$projects-intro-size: 11px;
+$projects-intro-max-width: 300px;
+$projects-intro-color: rgba(255, 255, 255, 0.72);
+$projects-transition-height: 24px;
+
+$project-card-width: 280px;
+$project-side-decoration-size: 100px;
+$project-side-decoration-inset: 120px;
+$project-side-decoration-top: 36%;
+$project-card-radius: 32px;
+$project-card-border-width: 3px;
+$project-card-padding: 11px;
+$project-card-media-radius: 23px;
+$project-card-media-background: #f4f4f4;
+$project-card-gap: 16px;
+$project-card-gap-top: 20px;
+$project-card-badge-height: 45px;
+$project-card-badge-inset-top: 7px;
+$project-card-badge-inset-right: 12px;
+$project-card-badge-padding-inline: 20px;
+$project-card-badge-font-size: 13px;
+$project-card-title-size: 20px;
+$project-card-title-inset: 6px;
+$project-card-desc-size: 12px;
+$project-card-desc-gap: 6px;
+$project-card-desc-max-width: 234px;
+
+$project-carousel-nav-size: 40px;
+$project-carousel-nav-gap: 36px;
+$project-carousel-nav-bottom: $projects-padding-block + 32px;
+$project-carousel-nav-half: 82px;
+$project-carousel-nav-icon-size: 22px;
+$project-carousel-marker-size: 6px;
+$project-carousel-marker-active-width: 24px;
+$project-carousel-marker-gap: 8px;
+$project-carousel-page-indicator-gap: 20px;
+$project-carousel-page-gap: 48px;
+$project-carousel-marker-color: rgba(255, 255, 255, 0.3);
+
+.projects {
+  position: relative;
+  padding: $projects-padding-block $projects-padding-inline 0;
+  background-color: $projects-background;
+  color: var(--color-background);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("../assets/icons/projects-pattern.svg");
+    background-repeat: repeat;
+    background-position: top left;
+    background-size: $pattern-grid-width $pattern-grid-height;
+    opacity: $pattern-grid-opacity;
+    pointer-events: none;
+  }
+
+  &__title {
+    position: relative;
+    z-index: var(--z-content);
+    font-family: var(--font-heading);
+    font-size: $projects-title-size;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: $letter-spacing-display;
+  }
+
+  &__intro {
+    position: relative;
+    z-index: var(--z-content);
+    max-width: $projects-intro-max-width;
+    font-family: var(--font-mono);
+    font-size: $projects-intro-size;
+    font-weight: 500;
+    line-height: 1.5;
+    color: $projects-intro-color;
+  }
+
+  &__side-decoration {
+    display: none;
+  }
+
+  &__carousel {
+    position: relative;
+    align-self: stretch;
+    gap: $project-card-gap;
+    margin-top: $project-card-gap-top + 12px;
+    margin-inline: -$projects-padding-inline;
+    padding-inline: $projects-padding-inline;
+    padding-bottom: $projects-padding-block;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: $projects-padding-inline;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__transition {
+    align-self: stretch;
+    height: $projects-transition-height;
+    margin-inline: -$projects-padding-inline;
+    background: var(--color-background)
+      url("../assets/icons/projects-transition.svg") repeat-x left top;
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    &__page {
+      display: contents;
+    }
+  }
+
+  @media (min-width: $breakpoint-ipad) {
+    &__carousel {
+      gap: $project-carousel-page-gap;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-marker-group: none;
+      padding-bottom: $projects-padding-block;
+    }
+
+    &__page {
+      display: grid;
+      flex: 0 0 100%;
+      width: 100%;
+      min-width: 0;
+      overflow: visible;
+      padding-top: 4px;
+      grid-template-columns: repeat(3, minmax(0, $project-card-width));
+      justify-content: center;
+      gap: $project-card-gap;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+
+      .project-card {
+        width: 100%;
+        min-width: 0;
+        scroll-snap-align: none;
+      }
+    }
+
+    @at-root .project-card::scroll-marker {
+      display: none;
+    }
+  }
+
+  &__mobile-markers {
+    display: none;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    &__side-decoration {
+      display: block;
+      position: absolute;
+      top: $project-side-decoration-top;
+      width: $project-side-decoration-size;
+      height: auto;
+      pointer-events: none;
+    }
+
+    &__side-decoration--left {
+      left: $project-side-decoration-inset;
+    }
+
+    &__side-decoration--right {
+      right: $project-side-decoration-inset;
+    }
+  }
+}
+
+.project-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: $project-card-width;
+  aspect-ratio: 509 / 579;
+  padding: $project-card-padding;
+  border: $project-card-border-width solid var(--color-background);
+  border-radius: $project-card-radius;
+  background-color: var(--color-background);
+  box-shadow: inset 0 0 0 $project-card-border-width var(--color-primary);
+  scroll-snap-align: start;
+
+  &__media {
+    flex: 0 0 auto;
+    aspect-ratio: 463 / 330;
+    border: 1px solid var(--color-primary);
+    border-radius: $project-card-media-radius;
+    background-color: $project-card-media-background;
+  }
+
+  &__badge {
+    position: absolute;
+    top: $project-card-badge-inset-top;
+    right: $project-card-badge-inset-right;
+    height: $project-card-badge-height;
+    padding: 0 $project-card-badge-padding-inline;
+    border: 2px solid var(--color-primary);
+    border-radius: 999px;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: inset 0 0 0 2px var(--color-background);
+    font-family: var(--font-heading);
+    font-size: $project-card-badge-font-size;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: $letter-spacing-display;
+  }
+
+  &__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-top: 17px;
+    padding-left: $project-card-title-inset;
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: $project-card-title-size;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: $letter-spacing-display;
+    color: var(--color-primary);
+  }
+
+  &__desc {
+    max-width: $project-card-desc-max-width;
+    margin: $project-card-desc-gap 0 0;
+    font-family: var(--font-body);
+    font-size: $project-card-desc-size;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--color-secondary);
+  }
+
+  &__link {
+    color: inherit;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &:focus-within {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+
+  @media (min-width: $breakpoint-ipad) {
+    opacity: 0.6;
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+
+    &:hover,
+    &:focus-within {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+@supports selector(::scroll-button(left)) {
+  .projects__carousel {
+    --projects-markers-bottom: 180px;
+    --projects-buttons-bottom: 120px;
+    padding-bottom: $project-carousel-nav-gap + $project-carousel-nav-size +
+      $project-carousel-nav-bottom;
+    scroll-marker-group: after;
+  }
+
+  .project-card::scroll-marker {
+    content: "";
+    display: block;
+    width: $project-carousel-marker-size;
+    height: $project-carousel-marker-size;
+    border-radius: 999px;
+    background-color: $project-carousel-marker-color;
+    transition:
+      width $duration-slow $ease-standard,
+      background-color $duration-slow $ease-standard;
+
+    &:target-current {
+      width: $project-carousel-marker-active-width;
+      background-color: var(--color-background);
+    }
+  }
+
+  .projects__carousel::scroll-marker-group {
+    position: absolute;
+    right: 0;
+    bottom: var(--projects-markers-bottom);
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $project-carousel-marker-gap;
+    height: $project-carousel-nav-size;
+    pointer-events: none;
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    .projects__carousel {
+      --projects-markers-bottom: 70px;
+      --projects-buttons-bottom: 48px;
+      margin-top: $project-card-gap-top;
+      padding-top: 4px;
+      padding-bottom: 102px;
+      scroll-marker-group: none;
+    }
+
+    .project-card {
+      opacity: 0.6;
+      transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+    }
+
+    .projects__mobile-markers {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      gap: $project-carousel-marker-gap;
+      margin-top: -80px;
+      scroll-target-group: auto;
+    }
+
+    .projects__mobile-marker {
+      display: block;
+      flex: 0 0 auto;
+      align-self: center;
+      width: $project-carousel-marker-size;
+      height: $project-carousel-marker-size;
+      border-radius: 999px;
+      background-color: $project-carousel-marker-color;
+      transition:
+        width $duration-slow $ease-standard,
+        background-color $duration-slow $ease-standard;
+
+      &:target-current {
+        width: $project-carousel-marker-active-width;
+        background-color: var(--color-background);
+      }
+    }
+
+    @supports selector(:has(*)) {
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-convograph"]:target-current
+        )
+        #project-card-convograph,
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-northwind"]:target-current
+        )
+        #project-card-northwind,
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-mosaic"]:target-current
+        )
+        #project-card-mosaic,
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-storyframe"]:target-current
+        )
+        #project-card-storyframe,
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-fieldnotes"]:target-current
+        )
+        #project-card-fieldnotes,
+      .projects:has(
+          .projects__mobile-marker[href="#project-card-daymark"]:target-current
+        )
+        #project-card-daymark {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
+    }
+
+    .projects__carousel::scroll-marker-group {
+      bottom: var(--projects-markers-bottom);
+    }
+
+    .projects__carousel::scroll-button(left),
+    .projects__carousel::scroll-button(right) {
+      bottom: var(--projects-buttons-bottom);
+    }
+
+    .projects__transition {
+      margin-top: 72px;
+    }
+  }
+
+  @media (min-width: $breakpoint-ipad) {
+    .projects__carousel {
+      scroll-marker-group: after;
+      padding-bottom: $project-carousel-nav-bottom + 60px + 16px +
+        $project-carousel-nav-size + $project-carousel-page-indicator-gap;
+    }
+
+    .projects__page::scroll-marker {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 12px;
+      border: 2px solid var(--color-background);
+      border-radius: 999px;
+      background: transparent;
+
+      &:target-current {
+        background: var(--color-background);
+      }
+    }
+
+    .project-card::scroll-marker {
+      display: none;
+    }
+
+    .projects__carousel::scroll-marker-group {
+      bottom: var(--projects-markers-bottom);
+      gap: 12px;
+      height: 40px;
+    }
+  }
+
+  .projects__carousel {
+    &::scroll-button(left),
+    &::scroll-button(right) {
+      content: "";
+      position: absolute;
+      bottom: var(--projects-buttons-bottom);
+      width: $project-carousel-nav-size;
+      height: $project-carousel-nav-size;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background-color: var(--color-background);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: $project-carousel-nav-icon-size;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    &::scroll-button(left) {
+      left: 50%;
+      margin-left: -$project-carousel-nav-half;
+      background-image: url("../assets/icons/arrow-left.svg");
+    }
+
+    &::scroll-button(right) {
+      right: 50%;
+      margin-right: -$project-carousel-nav-half;
+      background-image: url("../assets/icons/arrow-right.svg");
+    }
+
+    &::scroll-button(left):hover:not(:disabled),
+    &::scroll-button(right):hover:not(:disabled) {
+      background-color: var(--color-background);
+      filter: none;
+    }
+
+    &::scroll-button(left):disabled,
+    &::scroll-button(right):disabled {
+      cursor: default;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  }
+
+  @media (min-width: $breakpoint-ipad) {
+    .projects__carousel {
+      &::scroll-button(left),
+      &::scroll-button(right) {
+        bottom: var(--projects-buttons-bottom);
+        width: 70px;
+        height: 60px;
+        margin-left: 0;
+        margin-right: 0;
+        border: 2px solid var(--color-primary);
+        border-radius: 16px;
+        background-color: transparent;
+        background-size: 48px;
+        filter: invert(1);
+      }
+
+      &::scroll-button(left) {
+        left: 27%;
+      }
+
+      &::scroll-button(right) {
+        right: 27%;
+      }
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile-max) {
+    .projects__carousel {
+      &::scroll-button(left),
+      &::scroll-button(right) {
+        border: 2px solid var(--color-background);
+        background-color: transparent;
+        filter: none;
+      }
+
+      &::scroll-button(left) {
+        background-image: url("../assets/icons/arrow-left-white.svg");
+      }
+
+      &::scroll-button(right) {
+        background-image: url("../assets/icons/arrow-right-white.svg");
+      }
+
+      &::scroll-button(left):hover:not(:disabled),
+      &::scroll-button(right):hover:not(:disabled),
+      &::scroll-button(left):active:not(:disabled),
+      &::scroll-button(right):active:not(:disabled) {
+        background-color: var(--color-background);
+      }
+
+      &::scroll-button(left):hover:not(:disabled),
+      &::scroll-button(left):active:not(:disabled) {
+        background-image: url("../assets/icons/arrow-left.svg");
+      }
+
+      &::scroll-button(right):hover:not(:disabled),
+      &::scroll-button(right):active:not(:disabled) {
+        background-image: url("../assets/icons/arrow-right.svg");
+      }
+    }
+  }
+}
