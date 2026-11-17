@@ -7,8 +7,8 @@ Sito portfolio con una selezione di progetti di product e UX/UI design. Ogni pro
 ## Tecnologie
 
 - HTML5
-- SCSS (Dart Sass)
-- Bootstrap 5.3 (solo CSS, da CDN)
+- SCSS
+- Bootstrap 5.3 
 - JavaScript per il form contatti
 - EmailJS per l'invio del form contatti
 
