@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="463" height="330" viewBox="0 0 463 330" fill="none">
+  <rect width="463" height="330" fill="#efece4"/>
+  <text x="26" y="44" fill="#111111" font-family="Oswald, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="1">FIELDNOTES</text>
+  <text x="26" y="62" fill="#6b675d" font-family="Consolas, monospace" font-size="9" font-weight="700" letter-spacing="1.6">BRAND IDENTITY</text>
+  <circle cx="230" cy="165" r="74" fill="#111111"/>
+  <text x="230" y="181" fill="#efece4" font-family="Oswald, Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle" letter-spacing="2">FN</text>
+  <g fill="none" stroke="#111111" stroke-width="1.2">
+    <circle cx="230" cy="165" r="90" stroke-dasharray="2 6"/>
+  </g>
+  <g>
+    <rect x="26" y="278" width="34" height="20" rx="3" fill="#111111"/>
+    <rect x="66" y="278" width="34" height="20" rx="3" fill="#55534d"/>
+    <rect x="106" y="278" width="34" height="20" rx="3" fill="#8d897f"/>
+    <rect x="146" y="278" width="34" height="20" rx="3" fill="#bdb9ae"/>
+    <rect x="186" y="278" width="34" height="20" rx="3" fill="#efece4" stroke="#111111"/>
+  </g>
+  <text x="26" y="316" fill="#111111" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4">INDEPENDENT MAKERS</text>
+  <text x="437" y="316" fill="#6b675d" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4" text-anchor="end">EST. 2024</text>
+</svg>

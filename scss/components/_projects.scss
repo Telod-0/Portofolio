@@ -196,6 +196,14 @@ $project-carousel-marker-color: rgba(255, 255, 255, 0.3);
     border: 1px solid var(--color-primary);
     border-radius: $project-card-media-radius;
     background-color: $project-card-media-background;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
   }
 
   &__badge {

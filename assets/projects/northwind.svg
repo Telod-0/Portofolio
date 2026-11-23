@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="463" height="330" viewBox="0 0 463 330" fill="none">
+  <rect width="463" height="330" fill="#f2f1ed"/>
+  <path d="M26 30H437" stroke="#111111" stroke-width="1"/>
+  <text x="26" y="22" fill="#111111" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4">ISSUE 04 — EDITORIAL</text>
+  <text x="437" y="22" fill="#111111" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4" text-anchor="end">NORTHWIND</text>
+  <text x="26" y="96" fill="#111111" font-family="Oswald, Arial, sans-serif" font-size="44" font-weight="700" letter-spacing="-1">NORTHWIND</text>
+  <text x="27" y="128" fill="#555555" font-family="Consolas, monospace" font-size="9" font-weight="700" letter-spacing="1.6">STORIES WORTH SLOWING DOWN FOR</text>
+  <rect x="26" y="148" width="240" height="118" rx="4" fill="#111111"/>
+  <circle cx="78" cy="207" r="24" fill="none" stroke="#f2f1ed" stroke-width="1.5"/>
+  <path d="M54 252C100 190 140 226 186 176C210 150 238 168 266 190V262H26V252Z" fill="#f2f1ed" opacity="0.14"/>
+  <path d="M40 262V196M64 262V180M88 262V206M112 262V188" stroke="#f2f1ed" stroke-width="1" opacity="0.5"/>
+  <g fill="#111111">
+    <rect x="286" y="148" width="62" height="4" rx="2"/>
+    <rect x="286" y="158" width="151" height="4" rx="2"/>
+    <rect x="286" y="168" width="140" height="4" rx="2"/>
+    <rect x="286" y="178" width="151" height="4" rx="2"/>
+    <rect x="286" y="188" width="96" height="4" rx="2"/>
+  </g>
+  <g fill="#9a9a95">
+    <rect x="286" y="206" width="151" height="3" rx="1.5"/>
+    <rect x="286" y="215" width="151" height="3" rx="1.5"/>
+    <rect x="286" y="224" width="151" height="3" rx="1.5"/>
+    <rect x="286" y="233" width="118" height="3" rx="1.5"/>
+  </g>
+  <rect x="286" y="250" width="72" height="16" rx="8" fill="#111111"/>
+  <text x="296" y="261" fill="#f2f1ed" font-family="Consolas, monospace" font-size="7.5" font-weight="700" letter-spacing="1">READ STORY</text>
+  <path d="M26 286H437" stroke="#c9c7c0" stroke-width="1"/>
+  <text x="26" y="304" fill="#555555" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4">SCROLL-DRIVEN LAYOUTS</text>
+  <text x="437" y="304" fill="#555555" font-family="Consolas, monospace" font-size="8" font-weight="700" letter-spacing="1.4" text-anchor="end">01 / 04</text>
+</svg>
