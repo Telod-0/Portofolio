@@ -239,10 +239,12 @@ h4 {
   }
   .header__menu-button {
     grid-column: 4;
+    grid-row: 1;
     justify-self: end;
   }
   .header__menu-button--close {
     display: none;
+    background-color: transparent;
   }
   .header__nav:target {
     position: fixed;
@@ -265,17 +267,17 @@ h4 {
     position: relative;
     z-index: 2;
   }
-  .header:has(.header__nav:target) .header__menu-button--open {
-    display: none;
-  }
   .header:has(.header__nav:target) .header__menu-button--close {
     display: flex;
   }
-  .header__menu-button--close .header__menu-button-line:first-child {
-    transform: translateY(3px) rotate(45deg);
+  .header:has(.header__nav:target) .header__menu-button--open .header__menu-button-line:first-child {
+    transform: translateY(6px) rotate(45deg);
   }
-  .header__menu-button--close .header__menu-button-line:last-child {
-    transform: translateY(-3px) rotate(-45deg);
+  .header:has(.header__nav:target) .header__menu-button--open .header__menu-button-line:nth-child(2) {
+    opacity: 0;
+  }
+  .header:has(.header__nav:target) .header__menu-button--open .header__menu-button-line:last-child {
+    transform: translateY(-6px) rotate(-45deg);
   }
   .header__nav:target .header__link {
     display: block;
@@ -300,6 +302,7 @@ h4 {
 @media (max-width: 743.98px) {
   body:has(.header__nav:target) {
     overflow: hidden;
+    padding-top: 60px;
   }
 }
 .footer {
