@@ -163,7 +163,7 @@ h4 {
   background-color: var(--color-primary);
   cursor: pointer;
 }
-.header__menu-toggle:focus-visible + .header__menu-button {
+.header__menu-button:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 4px;
 }
@@ -209,7 +209,7 @@ h4 {
     grid-column: 7/-1;
     justify-self: end;
   }
-  .header__menu-button, .header__menu-toggle {
+  .header__menu-button {
     display: none;
   }
 }
@@ -241,7 +241,10 @@ h4 {
     grid-column: 4;
     justify-self: end;
   }
-  .header__menu-toggle:checked ~ .header__nav {
+  .header__menu-button--close {
+    display: none;
+  }
+  .header__nav:target {
     position: fixed;
     inset: 0;
     z-index: var(--z-content);
@@ -250,7 +253,7 @@ h4 {
     padding: 84px 16px 24px;
     background-color: var(--color-background);
   }
-  .header:has(.header__menu-toggle:checked) {
+  .header:has(.header__nav:target) {
     position: fixed;
     top: 0;
     right: 0;
@@ -262,16 +265,19 @@ h4 {
     position: relative;
     z-index: 2;
   }
-  .header__menu-toggle:checked + .header__menu-button .header__menu-button-line:first-child {
-    transform: translateY(6px) rotate(45deg);
+  .header:has(.header__nav:target) .header__menu-button--open {
+    display: none;
   }
-  .header__menu-toggle:checked + .header__menu-button .header__menu-button-line:nth-child(2) {
-    opacity: 0;
+  .header:has(.header__nav:target) .header__menu-button--close {
+    display: flex;
   }
-  .header__menu-toggle:checked + .header__menu-button .header__menu-button-line:last-child {
-    transform: translateY(-6px) rotate(-45deg);
+  .header__menu-button--close .header__menu-button-line:first-child {
+    transform: translateY(3px) rotate(45deg);
   }
-  .header__menu-toggle:checked ~ .header__nav .header__link {
+  .header__menu-button--close .header__menu-button-line:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+  .header__nav:target .header__link {
     display: block;
     padding-block: 18px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -284,7 +290,7 @@ h4 {
     text-decoration: none;
     transition: text-decoration-color 160ms ease;
   }
-  .header__menu-toggle:checked ~ .header__nav .header__link:hover, .header__menu-toggle:checked ~ .header__nav .header__link:active, .header__menu-toggle:checked ~ .header__nav .header__link:focus-visible {
+  .header__nav:target .header__link:hover, .header__nav:target .header__link:active, .header__nav:target .header__link:focus-visible {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 4px;
@@ -292,7 +298,7 @@ h4 {
 }
 
 @media (max-width: 743.98px) {
-  body:has(.header__menu-toggle:checked) {
+  body:has(.header__nav:target) {
     overflow: hidden;
   }
 }

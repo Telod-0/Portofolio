@@ -54,22 +54,24 @@
         </span>
       </a>
 
-      <input
-        class="header__menu-toggle visually-hidden"
-        type="checkbox"
-        id="mobile-menu-toggle"
-        aria-label="Toggle navigation menu"
+      <a
+        class="header__menu-button header__menu-button--open"
+        href="#mobile-nav"
+        aria-label="Open navigation menu"
         aria-controls="mobile-nav"
-      />
-      <label
-        class="header__menu-button"
-        for="mobile-menu-toggle"
-        aria-hidden="true"
       >
         <span class="header__menu-button-line"></span>
         <span class="header__menu-button-line"></span>
         <span class="header__menu-button-line"></span>
-      </label>
+      </a>
+      <a
+        class="header__menu-button header__menu-button--close"
+        href="#close-menu"
+        aria-label="Close navigation menu"
+      >
+        <span class="header__menu-button-line"></span>
+        <span class="header__menu-button-line"></span>
+      </a>
 
       <nav id="mobile-nav" class="header__nav" aria-label="Main menu">
         <a class="header__link" href="#projects" aria-current="page">
@@ -845,7 +847,6 @@
         </form>
       </div>
     </section>
-    <script src="js/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
     <script src="js/contact-form.js"></script>
   </body>
